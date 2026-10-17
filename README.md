@@ -1,18 +1,46 @@
 # can-my-boss-see-this
 
-**Your AI workspace settings were written for an audience of one. They may have an audience of many.**
+**You pasted customer data into ChatGPT on your work account. Can your boss read it?**
 
-On 2026-10-15, Anthropic's release notes added a beta **Compliance API** letting Enterprise admins retrieve every member's saved "Instructions for Claude" and Cowork "Global instructions" (alfw.ai). Every existing visibility tool serves admins auditing employees. This one serves the employee.
+Most employees have no idea what workspace admins can see — custom instructions, memory, chat history, usage stats. This tool answers the question per platform and plan, from a researched visibility matrix.
 
-`can-my-boss-see-this` takes the settings YOU declare (platform, plan, which categories you use) and produces a plain-English report of exactly what your employer/admin can read via admin APIs and logs — saved instructions, memory, chat history, custom GPTs/projects, usage stats.
+## 30-second quickstart
+```
+python can_my_boss_see_this.py chatgpt enterprise
+```
+
+## Example output
+```
+{
+  "platform": "chatgpt",
+  "plan": "enterprise",
+  "rows": [
+    {
+      "category": "Saved instructions / system prompts",
+      "you_use_it": false,
+      "admin_can_see": "yes",
+      "note": "Workspace admins can retrieve your custom instructions via the admin console and audit logs."
+    },
+    {
+      "category": "Memory / saved info",
+      "you_use_it": false,
+      "admin_can_see": "yes",
+      "note": "Saved memories are visible to admins on Enterprise workspaces."
+    },
+    {
+      "category": "Chat history content",
+      "you_use_it": false,
+      "admin_can_see": "yes",
+      "note": "Conversation content is accessible to admins for compliance review."
+    }
+  ]
+}
+```
+
+Platforms: `chatgpt | claude | gemini | copilot`. Add `--uses "customer data"` to check your specific data types.
 
 ## What it does NOT do
-It never fetches anyone's real workspace data — it works from declared settings against a documented visibility matrix. It is not legal advice, and vendor admin capabilities change; verify against current documentation.
-
-## Usage
-```
-python -m can_my_boss_see_this claude enterprise --uses saved_instructions,memory,chat_history
-```
+Policy research, not a live audit of your workspace. Admin capabilities change; verify against your provider's current docs before acting on it.
 
 ## Built by Ingenious AI
 
