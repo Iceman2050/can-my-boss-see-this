@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "can-my-boss-see-this"
+version = "1.0.0"
+description = "Employee-side audit of what your employer can read in your AI workspace (stdlib only)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+[project.scripts]
+can-my-boss-see-this = "can_my_boss_see_this:main"
+
+[tool.setuptools]
+py-modules = ["can_my_boss_see_this"]
